@@ -13,17 +13,8 @@ def set_pwm_us(us):
     duty = int(us / 1000000 * pca.frequency * 65536)
     channel.duty_cycle = duty
 
-# Stopp (meist 1500 µs)
-set_pwm_us(1500)
-time.sleep(2)
+for i in range(500, 2501, 50):
+    print(i)
+    set_pwm_us(i)
+    time.sleep(3)
 
-# Vorwärts
-set_pwm_us(1600)
-time.sleep(3)
-
-# Rückwärts
-set_pwm_us(1400)
-time.sleep(3)
-
-# Stopp
-set_pwm_us(1500)
