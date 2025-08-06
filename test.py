@@ -20,6 +20,8 @@ try:
     channel = None
     while True:
         user_in = input()
+        if user_in == "":
+            continue
         if "ch" in user_in:
             user_in = user_in[2:]
             user_in = user_in.strip()
