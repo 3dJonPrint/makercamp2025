@@ -14,6 +14,7 @@ def set_pwm_us(us):
         print("pleas enter an int")
         return
     duty = int(us / 1000000 * pca.frequency * 65536)
+    print(duty)
     channel.duty_cycle = duty
 
 try:
