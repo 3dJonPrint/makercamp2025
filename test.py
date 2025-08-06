@@ -27,6 +27,7 @@ try:
             user_in = user_in[2:]
             user_in = user_in.strip()
             channel = pca.channels[int(user_in)]
+            continue
         if channel == None:
             print("pleas select ch")
             continue
