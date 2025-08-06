@@ -13,7 +13,8 @@ def set_pwm_us(us):
     duty = int(us / 1000000 * pca.frequency * 65536)
     channel.duty_cycle = duty
 
-for i in range(0, 5001, 10):
-    print(i)
+try:
     set_pwm_us(input())
-
+except KeyboardInterrupt:
+    print("Programm End")
+    exit()
