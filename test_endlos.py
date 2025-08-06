@@ -14,7 +14,8 @@ def set_pwm_us(us):
     channel.duty_cycle = duty
 
 try:
-    set_pwm_us(int(input()))
+    while True:
+        set_pwm_us(int(input()))
 except KeyboardInterrupt:
     print("Programm End")
     exit()
