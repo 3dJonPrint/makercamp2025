@@ -10,6 +10,9 @@ pca.frequency = 50
 #channel = pca.channels[0]  # Beispiel: CH1
 
 def set_pwm_us(us):
+    if type(us) != int:
+        print("pleas enter an int")
+        return
     duty = int(us / 1000000 * pca.frequency * 65536)
     channel.duty_cycle = duty
 
