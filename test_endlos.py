@@ -16,5 +16,6 @@ def set_pwm_us(us):
 for i in range(0, 5001, 10):
     print(i)
     set_pwm_us(i)
+    time.sleep(1)
     input()
 
