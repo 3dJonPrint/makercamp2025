@@ -13,8 +13,8 @@ def set_pwm_us(us):
     duty = int(us / 1000000 * pca.frequency * 65536)
     channel.duty_cycle = duty
 
-for i in range(500, 2501, 50):
+for i in range(0, 5001, 10):
     print(i)
     set_pwm_us(i)
-    time.sleep(3)
+    input()
 
