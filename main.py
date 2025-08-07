@@ -7,7 +7,7 @@ from adafruit_pca9685 import PCA9685
 from xbox360controller import Xbox360Controller
 
 debug = True
-user_in = []
+user_in = [0, 0]
 
 i2c = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c)
@@ -45,8 +45,8 @@ def move_servo(servo, pos):
 
 try:
     while True:
-        user_in[0] = input("servo")
-        user_in[1] = input("pos")
+        user_in[0] = int(input("servo"))
+        user_in[1] = int(input("pos"))
         move_servo(user_in[0],user_in[1])
 except KeyboardInterrupt:
     print("Programm Exit")
