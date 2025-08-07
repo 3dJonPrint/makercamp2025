@@ -29,8 +29,7 @@ def limit_2_calc():
     limit_2 = [max(-pos_us[1]+3100,limit[2][0]),
                min(-pos_us[1]+4100, limit[2][1])]
 
-def move_servo(servo, pos):
-    limit = limit
+def move_servo(servo, pos, limit = limit):
     if servo == 2:
         limit_2_calc()
         limit = limit_2
