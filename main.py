@@ -57,7 +57,7 @@ try:
     if gamecont:
         while True:
             with Xbox360Controller(0, axis_threshold=0) as joy:
-                l_x = 0.5 - joy.axis_l.x
+                l_x = 0.5 + joy.axis_l.x
                 l_y = 0.5 - joy.axis_l.y
                 move_servo(1,pos_us[1]+l_x)
                 move_servo(2, pos_us[2]+l_y)
