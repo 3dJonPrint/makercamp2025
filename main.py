@@ -6,7 +6,7 @@ from time import sleep
 from adafruit_pca9685 import PCA9685
 from xbox360controller import Xbox360Controller
 
-debug = True
+debug = False
 user_in = [0, 0]
 
 i2c = busio.I2C(SCL, SDA)
@@ -30,6 +30,7 @@ def limit_2_calc():
                min(-pos_us[1]+4100, limit[2][1])]
 
 def move_servo(servo, pos, limit = limit):
+    global pos_us
     if servo == 2:
         limit_2_calc()
         limit = limit_2
@@ -37,13 +38,21 @@ def move_servo(servo, pos, limit = limit):
         limit = limit[servo]
 
     pos = min(limit[1],max(limit[0],pos))
+    pos_us[servo] = pos
+    duty = duty_calc(pos)
     if debug:
-        print(duty_calc(pos))
+        print(duty)
     else:
         servo = pca.channels[servo]
-        servo.duty_cycle = duty_calc(pos)
+        servo.duty_cycle = duty
+
+def start_pos():
+    move_servo(0, 700)
+    move_servo(1, 1000)
+    move_servo(2, 1500)
 
 try:
+    start_pos()
     while True:
         user_in[0] = int(input("servo"))
         user_in[1] = int(input("pos"))
