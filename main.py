@@ -7,6 +7,7 @@ from adafruit_pca9685 import PCA9685
 from xbox360controller import Xbox360Controller
 
 debug = False
+gamecont = True
 user_in = [0, 0]
 
 i2c = busio.I2C(SCL, SDA)
@@ -53,10 +54,19 @@ def start_pos():
 
 try:
     start_pos()
-    while True:
-        user_in[0] = int(input("servo"))
-        user_in[1] = int(input("pos"))
-        move_servo(user_in[0],user_in[1])
+    if gamecont:
+        while True:
+            with Xbox360Controller(0, axis_threshold=0) as joy:
+                l_x = 0.5 - joy.axis_l.x
+                l_y = 0.5 - joy.axis_l.y
+                move_servo(1,pos_us[1]+l_x)
+                move_servo(2, pos_us[2]+l_y)
+
+    else:
+        while True:
+                user_in[0] = int(input("servo"))
+                user_in[1] = int(input("pos"))
+                move_servo(user_in[0],user_in[1])
 except KeyboardInterrupt:
     print("Programm Exit")
     exit()
