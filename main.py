@@ -10,7 +10,7 @@ debug = False
 gamecont = True
 user_in = [0, 0]
 
-move_speed = 0.5
+move_speed = 0.2
 
 i2c = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c)
