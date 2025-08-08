@@ -40,7 +40,7 @@ def limit_calc():
             limit[i] = hard_limit[i]
     print(limit)
 
-def move_servo(servo, pos, ignore_limit=False):
+def move_servo(servo, pos, ignore_limit=False, limit=limit):
     global pos_us
     if not ignore_limit:
         limit_calc()
