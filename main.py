@@ -51,6 +51,8 @@ def move_servo(servo, pos, ignore_limit=False):
         lim = limit[servo]
     else:
         lim = hard_limit[servo]
+    if not lim[0] <= pos <= lim[1]:
+        print("LIMIT ERROR", servo, pos, lim)
     pos = min(lim[1],max(lim[0],pos))
     pos_us[servo] = pos
     duty = duty_calc(pos)
@@ -95,8 +97,8 @@ try:
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
                 joy_value[0] = clean_cont_number(joy.trigger_l.value*-1)
                 joy_value[0] = clean_cont_number(joy.trigger_r.value)
-                print(joy.trigger_l.value, joy.trigger_r.value)
-                print(joy_value)
+                if debug:
+                    print(joy_value)
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
                         move_servo(i, pos_us[i] + joy_value[i])
