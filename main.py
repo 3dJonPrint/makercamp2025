@@ -59,6 +59,7 @@ def move_servo(servo, pos, ignore_limit=False):
 def clean_cont_number(number):
     number *= 10
     number = math.floor(number)
+    print(type(number))
     return number
 
 def start_pos():
@@ -76,8 +77,7 @@ try:
                 l_x *= move_speed
                 l_y *= move_speed
                 print(l_x, l_y)
-                print(pos_us[1]+l_x, pos_us[2]+l_y)
-                move_servo(1,pos_us[1]+l_x)
+                move_servo(1, pos_us[1]+l_x)
                 move_servo(2, pos_us[2]+l_y)
                 sleep(0.1)
 
