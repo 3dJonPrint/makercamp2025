@@ -78,6 +78,7 @@ try:
                 l_y *= move_speed
                 print(type(l_x), type(l_y))
                 print(l_x, l_y)
+                print(type(pos_us[1]+l_x), type(pos_us[2]+l_y))
                 move_servo(1, pos_us[1]+l_x)
                 move_servo(2, pos_us[2]+l_y)
                 sleep(0.1)
