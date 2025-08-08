@@ -82,6 +82,7 @@ try:
                 joy_value[1] = clean_cont_number(joy.axis_l.y)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
+                print(joy_value)
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
                         move_servo(i, pos_us[i] + joy_value[i])
