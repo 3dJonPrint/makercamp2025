@@ -77,13 +77,13 @@ def start_pos():
 
 def change_tool():
     global pos_us
+    print("change_tool")
     if pos_us[5] == 700:
         move_servo(5, 1500)
         pos_us[5] = 1500
     else:
         move_servo(5, 700)
         pos_us[5] = 700
-    return True
 
 try:
     start_pos()
