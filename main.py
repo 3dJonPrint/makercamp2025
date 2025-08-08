@@ -66,8 +66,8 @@ def start_pos():
 try:
     start_pos()
     if gamecont:
-        while True:
-            with Xbox360Controller(0, axis_threshold=0) as joy:
+        with Xbox360Controller(0, axis_threshold=0) as joy:
+            while True:
                 l_x = joy.axis_l.x
                 l_y = joy.axis_l.y
                 print(l_x, l_y)
