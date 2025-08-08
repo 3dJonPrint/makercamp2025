@@ -53,6 +53,7 @@ def move_servo(servo, pos):
         servo.duty_cycle = duty
 
 def clean_cont_number(number):
+    print("raw", number)
     number *= 10
     number = math.floor(number)
     return number
