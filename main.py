@@ -89,7 +89,7 @@ try:
     start_pos()
     if gamecont:
         with Xbox360Controller(0, axis_threshold=0) as joy:
-            joy.button_y.when_pressed = change_tool
+            joy.button_a.when_pressed = change_tool
             while True:
                 joy_value[2] = clean_cont_number(joy.axis_l.x)
                 joy_value[1] = clean_cont_number(joy.axis_l.y*-1)
