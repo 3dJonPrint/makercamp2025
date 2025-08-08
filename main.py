@@ -4,7 +4,6 @@ import busio
 import time
 from time import sleep
 import math
-import sys
 from adafruit_pca9685 import PCA9685
 from xbox360controller import Xbox360Controller
 
