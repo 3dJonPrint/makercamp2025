@@ -21,6 +21,8 @@ pos_us = [0, 0, 0, 0, 0, 0]
 hard_limit = [[500, 900], [500, 2600], [500, 2600], [500, 2600], [500, 2600], [500, 2600]]
 
 def duty_calc(us):
+    print("duty_calc", us)
+    print(type(us))
     if type(us) != int:
         print("pleas enter an int")
         return
