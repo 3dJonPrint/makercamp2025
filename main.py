@@ -55,6 +55,7 @@ def move_servo(servo, pos):
 def clean_cont_number(number):
     number *= 10
     number = math.floor(number)
+    return number
 
 def start_pos():
     move_servo(0, 700)
