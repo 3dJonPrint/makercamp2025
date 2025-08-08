@@ -65,8 +65,7 @@ def start_pos():
 
 print("LOADED MODULES:")
 for name in sys.modules:
-    if "keyboard" in name:
-        print(name, "→", sys.modules[name])
+    print(name, "→", sys.modules[name])
 
 try:
     start_pos()
