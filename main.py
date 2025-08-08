@@ -44,7 +44,9 @@ def move_servo(servo, pos, ignore_limit=False):
     global pos_us
     if not ignore_limit:
         limit_calc()
-    lim = limit[servo]
+        lim = limit[servo]
+    else:
+        limit = hard_limit[servo]
     pos = min(lim[1],max(lim[0],pos))
     pos_us[servo] = pos
     duty = duty_calc(pos)
