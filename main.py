@@ -84,7 +84,7 @@ def on_button_pressed(button):
     else:
         move_servo(5, 700)
         pos_us[5] = 700
-    exit()
+        
 try:
     start_pos()
     if gamecont:
