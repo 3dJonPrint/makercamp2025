@@ -33,10 +33,10 @@ def duty_calc(us):
 def limit_calc():
     global limit
     limit = [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None]]
-    limit[1] = [max((pos_us[2]-3100)/-1, hard_limit[1][0]),
-                min((pos_us[2]-4100)/-1, hard_limit[1][1])]
-    limit[2] = [max(-pos_us[1]+3100, hard_limit[2][0]),
-                min(-pos_us[1]+4100, hard_limit[2][1])]
+    limit[1] = [int(max((pos_us[2]-3100)/-1, hard_limit[1][0])),
+                int(min((pos_us[2]-4100)/-1, hard_limit[1][1]))]
+    limit[2] = [int(max(-pos_us[1]+3100, hard_limit[2][0])),
+                int(min(-pos_us[1]+4100, hard_limit[2][1]))]
     for i in range(len(limit)):
         if limit[i] == [None, None]:
             limit[i] = hard_limit[i]
