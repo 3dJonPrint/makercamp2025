@@ -63,10 +63,6 @@ def start_pos():
     move_servo(1, 1000)
     move_servo(2, 1500)
 
-print("LOADED MODULES:")
-for name in sys.modules:
-    print(name, "→", sys.modules[name])
-
 try:
     start_pos()
     if gamecont:
