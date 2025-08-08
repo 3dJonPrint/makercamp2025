@@ -1,4 +1,3 @@
-
 from board import SCL, SDA
 import busio
 import time
@@ -21,8 +20,9 @@ pos_us = [0, 0, 0, 0, 0, 0]
 hard_limit = [[500, 900], [500, 2600], [500, 2600], [500, 2600], [500, 2600], [500, 2600]]
 
 def duty_calc(us):
-    print("duty_calc", us)
-    print(type(us))
+    if debug:
+        print("duty_calc", us)
+        print(type(us))
     if type(us) != int:
         print("pleas enter an int")
         return
@@ -40,7 +40,8 @@ def limit_calc():
     for i in range(len(limit)):
         if limit[i] == [None, None]:
             limit[i] = hard_limit[i]
-    print(limit)
+    if debug:
+        print(limit)
 
 def move_servo(servo, pos, ignore_limit=False):
     global pos_us
@@ -61,7 +62,8 @@ def move_servo(servo, pos, ignore_limit=False):
 def clean_cont_number(number):
     number *= 10
     number = math.floor(number)
-    print(type(number))
+    if debug:
+        print(type(number))
     return number
 
 def start_pos():
@@ -78,9 +80,10 @@ try:
                 l_y = clean_cont_number(joy.axis_l.y)
                 l_x *= move_speed
                 l_y *= move_speed
-                print(type(l_x), type(l_y))
-                print(l_x, l_y)
-                print(type(pos_us[1]+l_x), type(pos_us[2]+l_y))
+                if debug:
+                    print(type(l_x), type(l_y))
+                    print(l_x, l_y)
+                    print(type(pos_us[1]+l_x), type(pos_us[2]+l_y))
                 move_servo(1, pos_us[1]+l_x)
                 move_servo(2, pos_us[2]+l_y)
                 sleep(0.1)
