@@ -84,8 +84,7 @@ def change_tool():
     else:
         move_servo(5, 700)
         pos_us[5] = 700
-    sleep(1)
-
+    exit()
 try:
     start_pos()
     if gamecont:
