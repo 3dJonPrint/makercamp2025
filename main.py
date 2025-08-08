@@ -53,6 +53,7 @@ def move_servo(servo, pos):
 
 def clean_cont_number(number):
     number *= 10
+    number = math.floor(number)
 
 def start_pos():
     move_servo(0, 700)
@@ -64,10 +65,8 @@ try:
     if gamecont:
         while True:
             with Xbox360Controller(0, axis_threshold=0) as joy:
-                l_x = joy.axis_l.x
-                l_y = joy.axis_l.y
-                l_x
-                l_y
+                l_x = clean_cont_number(joy.axis_l.x)
+                l_y = clean_cont_number(joy.axis_l.y)
                 l_x *= move_speed
                 l_y *= move_speed
                 print(l_x, l_y)
