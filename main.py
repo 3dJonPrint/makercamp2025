@@ -68,8 +68,11 @@ try:
     if gamecont:
         while True:
             with Xbox360Controller(0, axis_threshold=0) as joy:
-                l_x = clean_cont_number(joy.axis_l.x)
-                l_y = clean_cont_number(joy.axis_l.y)
+                l_x = joy.axis_l.x
+                l_y = joy.axis_l.y
+                print(l_x, l_y)
+                l_x = clean_cont_number()
+                l_y = clean_cont_number()
                 l_x *= move_speed
                 l_y *= move_speed
                 print(l_x, l_y)
