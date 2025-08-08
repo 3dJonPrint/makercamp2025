@@ -73,16 +73,27 @@ def start_pos():
     move_servo(1, 1000, True)  # Ignore limit for initial position
     move_servo(2, 1500)
 
+def change_tool():
+    global pos_us
+    if pos_us[5] == 700:
+        move_servo(5, 1500)
+        pos_us[5] = 1500
+    else:
+        move_servo(5, 700)
+        pos_us[5] = 700
+    return True
+
 try:
     start_pos()
     if gamecont:
         with Xbox360Controller(0, axis_threshold=0) as joy:
+            joy.button_y.when_pressed = change_tool()
             while True:
                 joy_value[2] = clean_cont_number(joy.axis_l.x)
                 joy_value[1] = clean_cont_number(joy.axis_l.y*-1)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
-                joy_value[0] = clean_cont_number(joy.trigger_l.value)
+                joy_value[0] = clean_cont_number(joy.trigger_l.value*-1)
                 joy_value[0] = clean_cont_number(joy.trigger_r.value)
                 print(joy.trigger_l.value, joy.trigger_r.value)
                 print(joy_value)
