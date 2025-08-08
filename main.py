@@ -65,10 +65,11 @@ def move_servo(servo, pos, ignore_limit=False):
 def clean_cont_number(number):
     number *= 10
     number *= move_speed
-    number = math.floor(number)
+    number_floor = math.floor(number)
     if debug:
         print(type(number))
-    return number
+    print("clean_cont_number", number, number_floor)
+    return number_floor
 
 def start_pos():
     move_servo(0, 700)
@@ -96,14 +97,14 @@ try:
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
                 joy_value[0] = clean_cont_number(joy.trigger_l.value * -1)
-                print(joy_value)
+                #print(joy_value)
                 joy_value[0] = clean_cont_number(joy.trigger_r.value)
                 if debug:
                     print(joy_value)
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
                         move_servo(i, pos_us[i] + joy_value[i])
-                print("pos_us", pos_us)
+                #print("pos_us", pos_us)
                 #sleep(0.05)
 
 
