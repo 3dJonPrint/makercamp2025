@@ -10,7 +10,7 @@ debug = False
 gamecont = True
 user_in = [0, 0]
 
-move_speed = 1
+move_speed = 0.25
 
 i2c = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c)
@@ -62,6 +62,7 @@ def move_servo(servo, pos, ignore_limit=False):
 
 def clean_cont_number(number):
     number *= 10
+    number *= move_speed
     number = math.floor(number)
     if debug:
         print(type(number))
@@ -81,8 +82,6 @@ try:
                 joy_value[1] = clean_cont_number(joy.axis_l.y)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
-                for i in range(len(joy_value)):
-                    joy_value[i] *= move_speed
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
                         move_servo(i, pos_us[i] + joy_value[i])
