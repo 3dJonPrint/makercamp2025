@@ -96,7 +96,7 @@ try:
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
                 joy_value[0] = clean_cont_number(joy.trigger_l.value * -1)
-                print(joy.trigger_l.value * -1)
+                print(joy_value)
                 joy_value[0] = clean_cont_number(joy.trigger_r.value)
                 if debug:
                     print(joy_value)
