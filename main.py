@@ -4,6 +4,7 @@ import busio
 import time
 from time import sleep
 import math
+import sys
 from adafruit_pca9685 import PCA9685
 from xbox360controller import Xbox360Controller
 
@@ -61,6 +62,11 @@ def start_pos():
     move_servo(0, 700)
     move_servo(1, 1000)
     move_servo(2, 1500)
+
+print("LOADED MODULES:")
+for name in sys.modules:
+    if "keyboard" in name:
+        print(name, "→", sys.modules[name])
 
 try:
     start_pos()
