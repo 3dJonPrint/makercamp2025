@@ -17,7 +17,7 @@ i2c = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c)
 pca.frequency = 50
 
-pos_us = [0, 0, 0, 0, 0]
+pos_us = [0, 0, 0, 0, 0, 0]
 hard_limit = [[500, 900], [500, 2600], [500, 2600], [500, 2600], [500, 2600], [500, 2600]]
 
 def duty_calc(us):
@@ -76,6 +76,7 @@ try:
                 l_y = clean_cont_number(joy.axis_l.y)
                 l_x *= move_speed
                 l_y *= move_speed
+                print(type(l_x), type(l_y))
                 print(l_x, l_y)
                 move_servo(1, pos_us[1]+l_x)
                 move_servo(2, pos_us[2]+l_y)
