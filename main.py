@@ -62,13 +62,14 @@ def move_servo(servo, pos, ignore_limit=False):
         servo = pca.channels[servo]
         servo.duty_cycle = duty
 
-def clean_cont_number(number):
+def clean_cont_number(number, debug_=False):
     number *= 10
     number *= move_speed
     number_floor = math.floor(number)
     if debug:
         print(type(number))
-    print("clean_cont_number", number, number_floor)
+    if debug_:
+        print("clean_cont_number", number, number_floor)
     return number_floor
 
 def start_pos():
@@ -96,7 +97,7 @@ try:
                 joy_value[1] = clean_cont_number(joy.axis_l.y * -1)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
-                joy_value[0] = clean_cont_number(joy.trigger_l.value * -1)
+                joy_value[0] = clean_cont_number(joy.trigger_l.value * -1, True)
                 #print(joy_value)
                 joy_value[0] = clean_cont_number(joy.trigger_r.value)
                 if debug:
