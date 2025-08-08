@@ -10,7 +10,7 @@ debug = False
 gamecont = True
 user_in = [0, 0]
 
-move_speed = 0.1
+move_speed = 0.2
 
 i2c = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c)
@@ -82,10 +82,12 @@ try:
                 joy_value[1] = clean_cont_number(joy.axis_l.y)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
+                joy_value[0] = clean_cont_number(joy.axis_trigger_l)
                 print(joy_value)
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
                         move_servo(i, pos_us[i] + joy_value[i])
+                sleep(0.05)
 
 
     else:
