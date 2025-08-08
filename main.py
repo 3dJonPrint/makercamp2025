@@ -43,8 +43,8 @@ def limit_calc():
 def move_servo(servo, pos):
     global pos_us
     limit_calc()
-    limit = limit[servo]
-    pos = min(limit[1],max(limit[0],pos))
+    lim = limit[servo]
+    pos = min(lim[1],max(lim[0],pos))
     pos_us[servo] = pos
     duty = duty_calc(pos)
     if debug:
