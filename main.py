@@ -10,7 +10,7 @@ debug = False
 gamecont = True
 user_in = [0, 0]
 
-move_speed = 0.2
+move_speed = 0.5
 
 i2c = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c)
@@ -82,8 +82,8 @@ try:
                 joy_value[1] = clean_cont_number(joy.axis_l.y)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
-                joy_value[0] += clean_cont_number(joy.trigger_l.value)
-                joy_value[0] -= clean_cont_number(joy.trigger_r.value)
+                joy_value[0] = clean_cont_number(joy.trigger_l.value)
+                joy_value[0] = clean_cont_number(joy.trigger_r.value)
                 print(joy_value)
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
