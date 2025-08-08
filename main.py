@@ -82,7 +82,8 @@ try:
                 joy_value[1] = clean_cont_number(joy.axis_l.y)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
-                joy_value[0] = clean_cont_number(joy.axis_trigger_l)
+                joy_value[0] += clean_cont_number(joy.trigger_l.value)
+                joy_value[0] -= clean_cont_number(joy.trigger_r.value)
                 print(joy_value)
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
