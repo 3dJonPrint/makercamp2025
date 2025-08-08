@@ -76,6 +76,7 @@ try:
                 print(pos_us[1]+l_x, pos_us[2]+l_y)
                 move_servo(1,pos_us[1]+l_x)
                 move_servo(2, pos_us[2]+l_y)
+                sleep(0.1)
 
     else:
         while True:
