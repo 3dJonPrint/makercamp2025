@@ -79,11 +79,12 @@ try:
         with Xbox360Controller(0, axis_threshold=0) as joy:
             while True:
                 joy_value[2] = clean_cont_number(joy.axis_l.x)
-                joy_value[1] = clean_cont_number(joy.axis_l.y)
+                joy_value[1] = clean_cont_number(joy.axis_l.y*-1)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
                 joy_value[0] = clean_cont_number(joy.trigger_l.value)
                 joy_value[0] = clean_cont_number(joy.trigger_r.value)
+                print(joy.trigger_l.value, joy.trigger_r.value)
                 print(joy_value)
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
