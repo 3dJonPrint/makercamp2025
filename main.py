@@ -88,7 +88,7 @@ try:
                 for i in range(len(joy_value)):
                     if joy_value[i] != 0:
                         move_servo(i, pos_us[i] + joy_value[i])
-                sleep(0.05)
+                #sleep(0.05)
 
 
     else:
