@@ -17,6 +17,7 @@ pca = PCA9685(i2c)
 pca.frequency = 50
 
 pos_us = [0, 0, 0, 0, 0, 0]
+joy_value = [0, 0, 0, 0, 0, 0]
 hard_limit = [[500, 900], [500, 2600], [500, 2600], [500, 2600], [500, 2600], [500, 2600]]
 
 def duty_calc(us):
@@ -76,16 +77,16 @@ try:
     if gamecont:
         with Xbox360Controller(0, axis_threshold=0) as joy:
             while True:
-                l_x = clean_cont_number(joy.axis_l.x)
-                l_y = clean_cont_number(joy.axis_l.y)
-                l_x *= move_speed
-                l_y *= move_speed
-                if debug:
-                    print(type(l_x), type(l_y))
-                    print(l_x, l_y)
-                    print(type(pos_us[1]+l_x), type(pos_us[2]+l_y))
-                move_servo(1, pos_us[1]+l_x)
-                move_servo(2, pos_us[2]+l_y)
+                joy_value[2] = clean_cont_number(joy.axis_l.x)
+                joy_value[1] = clean_cont_number(joy.axis_l.y)
+                joy_value[4] = clean_cont_number(joy.axis_r.y)
+                joy_value[3] = clean_cont_number(joy.axis_r.x)
+                for i in range(len(joy_value)):
+                    joy_value[i] *= move_speed
+                for i in range(len(joy_value)):
+                    if joy_value[i] != 0:
+                        move_servo(i, pos_us[i] + joy_value[i])
+
 
     else:
         while True:
