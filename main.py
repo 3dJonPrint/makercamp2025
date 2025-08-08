@@ -38,11 +38,12 @@ def limit_calc():
     for i in range(len(limit)):
         if limit[i] == [None, None]:
             limit[i] = hard_limit[i]
+    print(limit)
 
 def move_servo(servo, pos):
     global pos_us
     limit_calc()
-    limit = hard_limit[servo]
+    limit = limit[servo]
     pos = min(limit[1],max(limit[0],pos))
     pos_us[servo] = pos
     duty = duty_calc(pos)
@@ -53,7 +54,6 @@ def move_servo(servo, pos):
         servo.duty_cycle = duty
 
 def clean_cont_number(number):
-    print("raw", number)
     number *= 10
     number = math.floor(number)
     return number
@@ -68,11 +68,8 @@ try:
     if gamecont:
         with Xbox360Controller(0, axis_threshold=0) as joy:
             while True:
-                l_x = joy.axis_l.x
-                l_y = joy.axis_l.y
-                print(l_x, l_y)
-                l_x = clean_cont_number(l_x)
-                l_y = clean_cont_number(l_y)
+                l_x = clean_cont_number(joy.axis_l.x)
+                l_y = clean_cont_number(joy.axis_l.y)
                 l_x *= move_speed
                 l_y *= move_speed
                 print(l_x, l_y)
