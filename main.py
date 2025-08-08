@@ -84,7 +84,7 @@ def on_button_pressed(button):
     else:
         move_servo(5, 700)
         pos_us[5] = 700
-        
+
 try:
     start_pos()
     if gamecont:
@@ -95,7 +95,7 @@ try:
                 joy_value[1] = clean_cont_number(joy.axis_l.y*-1)
                 joy_value[4] = clean_cont_number(joy.axis_r.y)
                 joy_value[3] = clean_cont_number(joy.axis_r.x)
-                joy_value[0] = clean_cont_number(joy.trigger_l.value*-1)
+                joy_value[0] = clean_cont_number(joy.trigger_l.value/-1)
                 joy_value[0] = clean_cont_number(joy.trigger_r.value)
                 if debug:
                     print(joy_value)
