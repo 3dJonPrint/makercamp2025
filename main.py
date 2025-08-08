@@ -40,9 +40,10 @@ def limit_calc():
             limit[i] = hard_limit[i]
     print(limit)
 
-def move_servo(servo, pos):
+def move_servo(servo, pos, ignore_limit=False):
     global pos_us
-    limit_calc()
+    if not ignore_limit:
+        limit_calc()
     lim = limit[servo]
     pos = min(lim[1],max(lim[0],pos))
     pos_us[servo] = pos
@@ -60,7 +61,7 @@ def clean_cont_number(number):
 
 def start_pos():
     move_servo(0, 700)
-    move_servo(1, 1000)
+    move_servo(1, 1000, True)  # Ignore limit for initial position
     move_servo(2, 1500)
 
 try:
